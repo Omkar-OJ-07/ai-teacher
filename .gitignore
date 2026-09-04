@@ -1,0 +1,50 @@
+# ========================
+# Environment / Secrets
+# ========================
+.env
+*.env
+!.env.example
+
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+ENV/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+*.log
+
+# ========================
+# Node / Frontend
+# ========================
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# ========================
+# Project artifacts
+# ========================
+media_cache/
+*.mp4
+*.mp3
+*.wav
+
+# ========================
+# IDE
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
