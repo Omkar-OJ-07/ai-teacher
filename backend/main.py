@@ -42,6 +42,14 @@ app = FastAPI(
     version="0.2.0",
 )
 
+@app.get("/")
+def root():
+    return {
+        "message": "AI Teacher Backend is running!",
+        "status": "online",
+        "docs": "/docs",
+        "health": "/health"
+    }
 # ─────────────────────────────────────────────
 # CORS — allow Vite dev server
 # ─────────────────────────────────────────────
