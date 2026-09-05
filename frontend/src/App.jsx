@@ -2,6 +2,7 @@
 import LessonForm from './components/LessonForm.jsx'
 import LessonPlanView from './components/LessonPlanView.jsx'
 import TeachingSession from './components/TeachingSession.jsx'
+import { API_URL } from './api.js'
 
 /**
  * App — top-level state manager.
@@ -54,7 +55,7 @@ export default function App() {
     const cache = prefetchCacheRef.current
     if (cache.has(key)) return
 
-    const promise = fetch('/api/start-teaching', {
+    const promise = fetch(`${API_URL}/api/start-teaching`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(buildTeachingPayload(plan, segmentIdx)),
@@ -82,7 +83,7 @@ export default function App() {
     prefetchCacheRef.current.clear()
 
     try {
-      const res = await fetch('/api/lesson-plan', {
+      const res = await fetch(`${API_URL}/api/lesson-plan`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

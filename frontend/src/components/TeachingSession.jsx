@@ -1,4 +1,5 @@
-﻿import { useState, useEffect, useRef } from 'react'
+﻿import { API_URL } from '../api.js'
+import { useState, useEffect, useRef } from 'react'
 import VisualPanel from './VisualPanel.jsx'
 import TeacherAvatar from './TeacherAvatar.jsx'
 
@@ -187,7 +188,7 @@ export default function TeachingSession({ plan, prefetchCacheRef, prefetchSegmen
 
       if (!content) {
         setLoadingMsg('Connecting to your AI teacher...')
-        const res = await fetch('/api/start-teaching', {
+        const res = await fetch(`${API_URL}/api/start-teaching`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(buildTeachingPayload(plan, seg)),
@@ -234,7 +235,7 @@ export default function TeachingSession({ plan, prefetchCacheRef, prefetchSegmen
     setMessages(prev => [...prev, newMsg('student', question, 'chat')])
     setChatSending(true)
     try {
-      const res = await fetch('/api/ask-question', {
+      const res = await fetch(`${API_URL}/api/ask-question`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(
@@ -375,7 +376,7 @@ export default function TeachingSession({ plan, prefetchCacheRef, prefetchSegmen
     setStatus(STATUS.EVALUATING)
 
     try {
-      const res = await fetch('/api/evaluate-answer', {
+      const res = await fetch(`${API_URL}/api/evaluate-answer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
