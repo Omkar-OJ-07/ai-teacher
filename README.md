@@ -6,6 +6,8 @@ Organizer: Bharat Academix | Deadline: 5 September 2026, 5:00 PM IST
 > **Core philosophy:** Working > Perfect. One complete end-to-end journey beats many half-working features.
 
 ---
+heres link -- https://ai-teacher-ten-gamma.vercel.app/
+---
 
 ## What This Is
 
