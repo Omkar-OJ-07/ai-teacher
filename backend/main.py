@@ -11,6 +11,7 @@ Phase 2 endpoints (new):
 """
 
 import logging
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
