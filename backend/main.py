@@ -39,26 +39,21 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="AI Teacher API",
-    description="Phase 1: Lesson Plan  |  Phase 2: Adaptive Teaching Loop",
+    description="Phase 1: Lesson Plan | Phase 2: Adaptive Teaching Loop",
     version="0.2.0",
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=[
+        "http://localhost:5173",
+        "https://ai-teacher-ten-gamma.vercel.app",
+        "https://ai-teacher-d9ps7j8gp-oj-b095.vercel.app",
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-@app.get("/")
-def root():
-    return {
-        "message": "AI Teacher Backend is running!",
-        "status": "online",
-        "docs": "/docs",
-        "health": "/health"
-    }
 # ─────────────────────────────────────────────
 # CORS — allow Vite dev server
 # ─────────────────────────────────────────────
