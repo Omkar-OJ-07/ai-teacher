@@ -43,36 +43,30 @@ app = FastAPI(
     version="0.2.0",
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "https://ai-teacher-ten-gamma.vercel.app",
-        "https://ai-teacher-d9ps7j8gp-oj-b095.vercel.app",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 # ─────────────────────────────────────────────
-# CORS — allow Vite dev server
+# CORS
 # ─────────────────────────────────────────────
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-@app.options("/{full_path:path}")
-async def options_handler(full_path: str):
-    return {}
 
+# ─────────────────────────────────────────────
+# Routes
+# ─────────────────────────────────────────────
 
+@app.get("/")
+def root():
+    return {
+        "message": "AI Teacher Backend is running!",
+        "status": "online",
+        "docs": "/docs",
+        "health": "/health"
+    }
 # ═══════════════════════════════════════════════════════════════
 # SYSTEM
 # ═══════════════════════════════════════════════════════════════
