@@ -2,8 +2,9 @@
  * LessonPlanView — displays the Gemini-generated lesson plan.
  *
  * Props:
- *   plan    — LessonPlanResponse object from the backend
- *   onBack  — callback to return to the form
+ *   plan             — LessonPlanResponse object from the backend
+ *   onBack           — callback to return to the form
+ *   onStartLearning  — callback to enter the teaching session (Phase 2)
  */
 
 // Maps visual_type values to human-readable labels and emoji
@@ -23,7 +24,7 @@ function getVisual(type) {
   return VISUAL_LABELS[key] || { label: type || 'Visual', icon: '🎨' }
 }
 
-export default function LessonPlanView({ plan, onBack }) {
+export default function LessonPlanView({ plan, onBack, onStartLearning }) {
   const totalSegments  = plan.segments.length
   const interactSegs   = plan.segments.filter(s => s.interaction_required).length
 
@@ -151,6 +152,18 @@ export default function LessonPlanView({ plan, onBack }) {
               </div>
             )
           })}
+        </div>
+      </div>
+      {/* ── Start Learning CTA ──────────────────────────────────── */}
+      <div className="start-learning-cta">
+        <div className="start-learning-inner">
+          <div className="start-learning-text">
+            <h3>Ready to start learning?</h3>
+            <p>Your AI teacher will explain each concept, ask you questions, and adapt based on your responses.</p>
+          </div>
+          <button className="btn-start-learning" onClick={onStartLearning}>
+            ▶ Start Learning
+          </button>
         </div>
       </div>
     </div>

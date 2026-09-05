@@ -14,6 +14,7 @@ const DEFAULTS = {
   language: 'English',
   available_time_minutes: 20,
   learning_goal: '',
+  source_material: '',
 }
 
 /**
@@ -39,6 +40,7 @@ export default function LessonForm({ onSubmit, loading, error }) {
       ...form,
       topic: form.topic.trim(),
       learning_goal: form.learning_goal.trim(),
+      source_material: form.source_material.trim() || null,
     })
   }
 
@@ -143,6 +145,29 @@ export default function LessonForm({ onSubmit, loading, error }) {
             maxLength={500}
             disabled={loading}
           />
+        </div>
+
+        {/* Source Material (optional) */}
+        <div className="form-group form-group--optional">
+          <label htmlFor="source_material">
+            Paste source material
+            <span className="label-optional"> — optional</span>
+          </label>
+          <textarea
+            id="source_material"
+            placeholder="Paste a chapter, notes, or article text to ground the lesson in this material. Leave blank to teach from the topic directly."
+            value={form.source_material}
+            onChange={e => set('source_material', e.target.value)}
+            rows={4}
+            maxLength={8000}
+            disabled={loading}
+            className="textarea--source"
+          />
+          {form.source_material.trim().length > 0 && (
+            <div className="source-material-hint">
+              📄 {form.source_material.trim().length} chars — lesson will be grounded in this material
+            </div>
+          )}
         </div>
 
         {/* Error */}
