@@ -11,7 +11,7 @@ Phase 2 endpoints (new):
 """
 
 import logging
-from fastapi.middleware.cors import CORSMiddleware
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -41,6 +41,14 @@ app = FastAPI(
     title="AI Teacher API",
     description="Phase 1: Lesson Plan  |  Phase 2: Adaptive Teaching Loop",
     version="0.2.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
